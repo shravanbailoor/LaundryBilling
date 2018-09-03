@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Laundry Billing</string>
+
+    <!-- Names for the items in MainActivity screen -->
+    <string name="place_order_button_name">Place Order</string>
+    <string name="view_order_history_button_name">View Order History</string>
+
+    <!-- Names for the items in the PlaceOrder screen -->
+    <string name="order_type_text_name">Order:</string>
+    <string name="item_type_text_name">Item:</string>
+    <string name="item_subtype_text_name">Sub Type:</string>
+    <string name="item_quantity_text_name">Quantity:</string>
+
+    <string name="order_type_radiobutton_wash_name">Wash</string>
+    <string name="order_type_radiobutton_iron_name">Iron</string>
+    <string name="order_type_radiobutton_darning_name">Darning</string>
+
+    <string name="tap_to_select_name">Tap To Select</string>
+
+</resources>
