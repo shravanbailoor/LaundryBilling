@@ -17,4 +17,9 @@
 
     <string name="tap_to_select_name">Tap To Select</string>
 
+    <string name="initial_quantity">1</string>
+
+    <string name="add_item">Add</string>
+    <string name="confirm_items">Confirm</string>
+
 </resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "700627040421",
+    "firebase_url": "https://laundrybilling-45259.firebaseio.com",
+    "project_id": "laundrybilling-45259",
+    "storage_bucket": "laundrybilling-45259.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700627040421:android:292ad6f338e1ce52",
+        "android_client_info": {
+          "package_name": "com.example.laundrybilling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700627040421-8k4bplp8evoi8tkpt0m7n24p58mmuhlr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.laundrybilling",
+            "certificate_hash": "7dbb0f8d2231b68bc9c4797d060c9b5088679ea3"
+          }
+        },
+        {
+          "client_id": "700627040421-hafd8jljil4m819l0j1vjmmh4uah64gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARuLT6jy98SmpSbe-7fDcOLd4mqevA4GI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700627040421-hafd8jljil4m819l0j1vjmmh4uah64gg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

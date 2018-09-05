@@ -173,6 +173,7 @@ public class PlaceOrder extends AppCompatActivity {
             itemTypeSelected = Boolean.TRUE;
         }
 
+
         if (subTypeButton.getText().toString().toLowerCase().equals("tap to select")) {
             Toast.makeText(PlaceOrder.this,
                     "Choose the 'Sub Type'", Toast.LENGTH_SHORT).show();
@@ -181,6 +182,15 @@ public class PlaceOrder extends AppCompatActivity {
         }
 
         /* Validation - End */
+
+        if (orderTypeSelected == Boolean.TRUE && itemTypeSelected == Boolean.TRUE &&
+                subTypeSelected == Boolean.TRUE) {
+            //Save the data. Send the data to the list screen; swipe the screen to check it
+        }
+    }
+
+    public void onClickConfirmButton(View confirmButtonView) {
+        //
     }
 
 }
