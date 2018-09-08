@@ -4,39 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlaceOrder">
+    tools:context=".PlaceOrder"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/textItemType"
-        android:layout_width="90dp"
-        android:layout_height="60dp"
+        android:layout_width="92dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="22dp"
         android:gravity="center_vertical"
         android:text="@string/item_type_text_name"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textSubItemType"
-        app:layout_constraintEnd_toStartOf="@+id/buttonItemType"
+        app:layout_constraintBottom_toTopOf="@+id/textPrice"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioBoxOrderType" />
+        app:layout_constraintTop_toBottomOf="@+id/textUserName" />
 
     <TextView
-        android:id="@+id/textSubItemType"
+        android:id="@+id/textPrice"
         android:layout_width="90dp"
-        android:layout_height="60dp"
+        android:layout_height="44dp"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="26dp"
         android:gravity="center_vertical"
-        android:text="@string/item_subtype_text_name"
+        android:text="@string/item_price_text_name"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textItemQuantity"
-        app:layout_constraintEnd_toStartOf="@+id/buttonSubType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textItemType" />
+
+    <TextView
+        android:id="@+id/textUserName"
+        android:layout_width="90dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
+        android:text="@string/item_user_text_name"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textItemType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioBoxOrderType" />
 
     <TextView
         android:id="@+id/textItemQuantity"
@@ -44,13 +58,13 @@
         android:layout_height="60dp"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:text="@string/item_quantity_text_name"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSubItemType" />
+        app:layout_constraintTop_toBottomOf="@+id/textPrice" />
 
     <RadioGroup
         android:id="@+id/radioBoxOrderType"
@@ -62,11 +76,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:nextFocusDown="@id/tbCustomerName"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textItemType"
+        app:layout_constraintBottom_toTopOf="@+id/textUserName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="packed">
 
         <RadioButton
             android:id="@+id/radioButtonWash"
@@ -97,69 +115,36 @@
 
     </RadioGroup>
 
-    <Button
-        android:id="@+id/buttonItemType"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/holo_blue_dark"
-        android:text="@string/tap_to_select_name"
-        android:onClick="OnClickItemTypeButton"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSubType"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textItemType"
-        app:layout_constraintTop_toBottomOf="@+id/radioBoxOrderType" />
-
-    <Button
-        android:id="@+id/buttonSubType"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/holo_blue_dark"
-        android:text="@string/tap_to_select_name"
-        android:onClick="onClickSubTypeButton"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textSubItemType"
-        app:layout_constraintTop_toBottomOf="@+id/buttonItemType" />
-
     <TextView
         android:id="@+id/textDisplayQuantity"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:gravity="center_vertical"
         android:text="@string/initial_quantity"
         android:textAlignment="center"
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/imageButtonPlus"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageButtonMinus"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSubType" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddItem"
+        app:layout_constraintTop_toBottomOf="@+id/tbPrice"
+        tools:layout_editor_absoluteY="309dp" />
 
     <ImageButton
         android:id="@+id/imageButtonMinus"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="onClickQuantityDecreaseButton"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toEndOf="@+id/textItemQuantity"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSubType"
-        app:srcCompat="@android:drawable/arrow_down_float" />
+        app:layout_constraintTop_toBottomOf="@+id/tbPrice"
+        app:srcCompat="@android:drawable/arrow_down_float"
+        tools:layout_editor_absoluteY="280dp" />
 
     <ImageButton
         android:id="@+id/imageButtonPlus"
@@ -167,44 +152,91 @@
         android:layout_height="60dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="onClickQuantityIncreaseButton"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSubType"
-        app:srcCompat="@android:drawable/arrow_up_float" />
+        app:layout_constraintTop_toBottomOf="@+id/tbPrice"
+        app:srcCompat="@android:drawable/arrow_up_float"
+        tools:layout_editor_absoluteY="280dp" />
 
     <Button
         android:id="@+id/buttonAddItem"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="onClickAddBillItem"
         android:text="@string/add_item"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDisplayQuantity" />
+        app:layout_constraintTop_toBottomOf="@+id/textDisplayQuantity"
+        app:layout_constraintBottom_toTopOf="@+id/button2"/>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginBottom="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_dark"
         android:text="@string/confirm_items"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddItem" />
+
+    <EditText
+        android:id="@+id/tbItem"
+        android:layout_width="195dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="26dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:nextFocusDown="@id/tbPrice"
+        app:layout_constraintStart_toEndOf="@+id/textItemType"
+        app:layout_constraintTop_toBottomOf="@+id/tbCustomerName"
+        app:layout_constraintBottom_toTopOf="@+id/tbPrice"
+        tools:layout_editor_absoluteY="178dp" />
+
+    <EditText
+        android:id="@+id/tbCustomerName"
+        android:layout_width="195dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="34dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:nextFocusDown="@id/tbItem"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="107dp"
+        app:layout_constraintStart_toEndOf="@+id/textUserName"
+        app:layout_constraintTop_toBottomOf="@+id/radioBoxOrderType"
+        app:layout_constraintBottom_toTopOf="@+id/tbItem"/>
+
+    <EditText
+        android:id="@+id/tbPrice"
+        android:layout_width="197dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:inputType="number"
+        android:nextFocusDown="@id/textDisplayQuantity"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="246dp"
+        app:layout_constraintStart_toEndOf="@+id/textPrice"
+        app:layout_constraintTop_toBottomOf="@+id/tbItem"
+        app:layout_constraintBottom_toTopOf="@+id/textDisplayQuantity"/>
 
 </android.support.constraint.ConstraintLayout>

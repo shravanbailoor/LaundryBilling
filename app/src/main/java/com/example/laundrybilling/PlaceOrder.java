@@ -20,9 +20,6 @@ public class PlaceOrder extends AppCompatActivity {
     String[] listItemType;
     String[] listSubType;
 
-    Button itemTypeButton;
-    Button subTypeButton;
-
     String selectedItemTypeDisplayText;
 
     Boolean itemTypeSelected;
@@ -33,6 +30,10 @@ public class PlaceOrder extends AppCompatActivity {
     RadioGroup radioGroupOrderType;
 
     TextView textDisplayQuantity;
+    TextView textPrice;
+    TextView textCustomerName;
+    TextView textItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,95 +41,11 @@ public class PlaceOrder extends AppCompatActivity {
         setContentView(R.layout.activity_place_order);
 
         radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
-        itemTypeButton = findViewById(R.id.buttonItemType);
-        subTypeButton = findViewById(R.id.buttonSubType);
+        textCustomerName = findViewById(R.id.tbCustomerName);
+        textItem = findViewById(R.id.tbItem);
+        textPrice = findViewById(R.id.tbPrice);
         textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
 
-    }
-
-    public void OnClickItemTypeButton(View itemTypeButtonView) {
-        final String oldText = itemTypeButton.getText().toString();
-
-        /* AlertDialog for selection of Item Type - Start */
-        listItemType = getResources().getStringArray(R.array.itemType);
-
-        AlertDialog.Builder itemTypeBuilder = new AlertDialog.Builder(PlaceOrder.this);
-        itemTypeBuilder.setTitle("Choose an item");
-        itemTypeBuilder.setSingleChoiceItems(listItemType,
-                -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterfaceItemType, int i) {
-                        itemTypeButton.setText(listItemType[i]);
-                        if (itemTypeButton.getText().toString().equals(oldText)) {
-                            //Do nothing
-                        } else {
-                            subTypeButton.setText(R.string.tap_to_select_name);
-                            textDisplayQuantity.setText(R.string.initial_quantity);
-                        }
-                        dialogInterfaceItemType.dismiss();
-                    }
-                });
-        AlertDialog dialogDisplayItemType = itemTypeBuilder.create();
-        dialogDisplayItemType.show();
-
-        /* AlertDialog for selection of Item Type - End */
-
-    }
-
-    public void onClickSubTypeButton(View subTypeButtonView) {
-        final String oldText = subTypeButton.getText().toString();
-
-        /* AlertDialog for selection of Sub Type - Start */
-        selectedItemTypeDisplayText = itemTypeButton.getText().toString();
-
-        itemTypeSelected = Boolean.FALSE;
-
-        switch (selectedItemTypeDisplayText) {
-            case "Shirt":
-                listSubType = getResources().getStringArray(R.array.subType_Shirt);
-                break;
-
-            case "Pant":
-                listSubType = getResources().getStringArray(R.array.subType_Pant);
-                break;
-
-            case "Saree":
-                listSubType = getResources().getStringArray(R.array.subType_Saree);
-                break;
-
-            default:
-                itemTypeSelected = Boolean.TRUE;
-        }
-
-        if (itemTypeSelected == Boolean.FALSE) {
-            AlertDialog.Builder subTypeBuilder = new AlertDialog.Builder(PlaceOrder.this);
-            subTypeBuilder.setTitle("Select the sub type");
-            subTypeBuilder.setSingleChoiceItems(listSubType,
-                    -1, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterfaceSubType, int i) {
-                            subTypeButton.setText(listSubType[i]);
-                            if (subTypeButton.getText().toString().equals(oldText)) {
-                                //Do nothing
-                            } else {
-                                textDisplayQuantity.setText(R.string.initial_quantity);
-                            }
-                            dialogInterfaceSubType.dismiss();
-                        }
-                    });
-            AlertDialog dialogDisplaySubType = subTypeBuilder.create();
-            dialogDisplaySubType.show();
-
-        } else {
-            Toast.makeText(PlaceOrder.this,
-                    "Select an 'Item'", Toast.LENGTH_SHORT).show();
-        }
-
-        /* AlertDialog for selection of Sub Type - End */
-
-        /* Restore the text to default if there is a change in sub type - Start */
-
-        /* Restore the text to default if there is a change in sub type - End */
     }
 
     public void onClickQuantityDecreaseButton(View quantityButtonView) {
@@ -159,34 +76,44 @@ public class PlaceOrder extends AppCompatActivity {
         subTypeSelected = Boolean.FALSE;
 
         int selectedRadioButtonId = radioGroupOrderType.getCheckedRadioButtonId();
-        if (selectedRadioButtonId != -1) {
+        if (selectedRadioButtonId == -1) {
             Toast.makeText(PlaceOrder.this,
                     "Select 'Wash', 'Iron' or 'Darning' option", Toast.LENGTH_SHORT).show();
         } else {
             orderTypeSelected = Boolean.TRUE;
         }
 
-        if (itemTypeButton.getText().toString().toLowerCase().equals("tap to select")) {
+        if (textItem.getText() != null && textItem.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(PlaceOrder.this,
-                    "Select an 'Item'", Toast.LENGTH_SHORT).show();
+                    "Please enter Item", Toast.LENGTH_SHORT).show();
         } else {
             itemTypeSelected = Boolean.TRUE;
         }
 
 
-        if (subTypeButton.getText().toString().toLowerCase().equals("tap to select")) {
+        if (textCustomerName.getText()!=null && textCustomerName.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(PlaceOrder.this,
-                    "Choose the 'Sub Type'", Toast.LENGTH_SHORT).show();
+                    "Please enter Customer Name", Toast.LENGTH_SHORT).show();
         } else {
             subTypeSelected = Boolean.TRUE;
         }
 
+
+        if (textPrice.getText()!=null && textPrice.getText().toString().toLowerCase().equals("")) {
+            Toast.makeText(PlaceOrder.this,
+                    "Please enter Price", Toast.LENGTH_SHORT).show();
+        } else {
+            subTypeSelected = Boolean.TRUE;
+        }
         /* Validation - End */
 
         if (orderTypeSelected == Boolean.TRUE && itemTypeSelected == Boolean.TRUE &&
                 subTypeSelected == Boolean.TRUE) {
+
             //Save the data. Send the data to the list screen; swipe the screen to check it
         }
+
+
     }
 
     public void onClickConfirmButton(View confirmButtonView) {
