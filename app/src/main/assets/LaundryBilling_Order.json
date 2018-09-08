@@ -8,12 +8,14 @@
         {
           "itemname": "shirt",
           "quantity": 1,
-          "price": 20
+          "price": 20,
+          "category": "Wash"
         },
         {
           "itemname": "pant",
           "quantity": 1,
-          "price": 15
+          "price": 15,
+          "category": "Wash"
         }
       ]
     }

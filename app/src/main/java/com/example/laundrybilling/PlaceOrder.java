@@ -7,6 +7,9 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -34,11 +37,14 @@ public class PlaceOrder extends AppCompatActivity {
     TextView textCustomerName;
     TextView textItem;
 
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
+
+        //mDatabase = FirebaseDatabase.getInstance().getReference();
 
         radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
         textCustomerName = findViewById(R.id.tbCustomerName);
@@ -117,7 +123,7 @@ public class PlaceOrder extends AppCompatActivity {
     }
 
     public void onClickConfirmButton(View confirmButtonView) {
-        //
+
     }
 
 }

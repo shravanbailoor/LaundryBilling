@@ -161,7 +161,7 @@
         app:srcCompat="@android:drawable/arrow_up_float"
         tools:layout_editor_absoluteY="280dp" />
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/buttonAddItem"
         android:layout_width="100dp"
         android:layout_height="60dp"
@@ -177,7 +177,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textDisplayQuantity"
         app:layout_constraintBottom_toTopOf="@+id/button2"/>
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/button2"
         android:layout_width="100dp"
         android:layout_height="60dp"

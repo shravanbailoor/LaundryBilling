@@ -16,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PlaceOrderTabLayout extends AppCompatActivity {
 
@@ -30,6 +32,17 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    Boolean itemTypeSelected;
+    Boolean subTypeSelected;
+    Boolean quantitySelected;
+    Boolean orderTypeSelected;
+
+    RadioGroup radioGroupOrderType;
+
+    TextView textDisplayQuantity;
+    TextView textPrice;
+    TextView textCustomerName;
+    TextView textItem;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -45,7 +58,11 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
+        radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
+        textCustomerName = findViewById(R.id.tbCustomerName);
+        textItem = findViewById(R.id.tbItem);
+        textPrice = findViewById(R.id.tbPrice);
+        textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -107,6 +124,8 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 1){
                 rootView = inflater.inflate(R.layout.activity_place_order, container, false);
 
+
+
             }else {
                 rootView = inflater.inflate(R.layout.place_order_summary, container, false);
                 TextView textView = (TextView) rootView.findViewById(R.id.section_label);
@@ -114,6 +133,84 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
             }
             return rootView;
         }
+    }
+
+    public void onClickAddBillItem(View addBillItemView) {
+        /* Validation - Start */
+
+        orderTypeSelected = Boolean.FALSE;
+        itemTypeSelected = Boolean.FALSE;
+        subTypeSelected = Boolean.FALSE;
+
+        radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
+        textCustomerName = findViewById(R.id.tbCustomerName);
+        textItem = findViewById(R.id.tbItem);
+        textPrice = findViewById(R.id.tbPrice);
+        textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
+
+        int selectedRadioButtonId = radioGroupOrderType.getCheckedRadioButtonId();
+        if (selectedRadioButtonId == -1) {
+            Toast.makeText(PlaceOrderTabLayout.this,
+                    "Select 'Wash', 'Iron' or 'Darning' option", Toast.LENGTH_SHORT).show();
+        } else {
+            orderTypeSelected = Boolean.TRUE;
+        }
+
+        if (textItem.getText() != null && textItem.getText().toString().toLowerCase().equals("")) {
+            Toast.makeText(PlaceOrderTabLayout.this,
+                    "Please enter Item", Toast.LENGTH_SHORT).show();
+        } else {
+            itemTypeSelected = Boolean.TRUE;
+        }
+
+
+        if (textCustomerName.getText()!=null && textCustomerName.getText().toString().toLowerCase().equals("")) {
+            Toast.makeText(PlaceOrderTabLayout.this,
+                    "Please enter Customer Name", Toast.LENGTH_SHORT).show();
+        } else {
+            subTypeSelected = Boolean.TRUE;
+        }
+
+
+        if (textPrice.getText()!=null && textPrice.getText().toString().toLowerCase().equals("")) {
+            Toast.makeText(PlaceOrderTabLayout.this,
+                    "Please enter Price", Toast.LENGTH_SHORT).show();
+        } else {
+            subTypeSelected = Boolean.TRUE;
+        }
+        /* Validation - End */
+
+        if (orderTypeSelected == Boolean.TRUE && itemTypeSelected == Boolean.TRUE &&
+                subTypeSelected == Boolean.TRUE) {
+
+            //Save the data. Send the data to the list screen; swipe the screen to check it
+        }
+
+
+    }
+    public void onClickConfirmButton(View confirmButtonView) {
+
+    }
+
+    public void onClickQuantityDecreaseButton(View quantityButtonView) {
+        /* Update counter textView on decrease in Quantity - Start */
+        if (textDisplayQuantity.getText().toString().equals("1")) {
+            Toast.makeText(PlaceOrderTabLayout.this,
+                    "'Quantity cannot be less than one'", Toast.LENGTH_SHORT).show();
+        } else {
+            Integer count = Integer.parseInt(textDisplayQuantity.getText().toString());
+            count = count - 1;
+            textDisplayQuantity.setText(String.valueOf(count));
+        }
+        /* Update counter textView on decrease in Quantity - End */
+    }
+
+    public void onClickQuantityIncreaseButton(View quantityButtonView) {
+        /* Update counter textView on increase in Quantity - Start */
+        Integer count = Integer.parseInt(textDisplayQuantity.getText().toString());
+        count = count + 1;
+        textDisplayQuantity.setText(String.valueOf(count));
+        /* Update counter textView on increase in Quantity - End */
     }
 
     /**
