@@ -1,0 +1,21 @@
+{
+  "order": [
+    {
+      "ordernumber": 1,
+      "name": "abcd",
+      "number": "1234567890",
+      "items": [
+        {
+          "itemname": "shirt",
+          "quantity": 1,
+          "price": 20
+        },
+        {
+          "itemname": "pant",
+          "quantity": 1,
+          "price": 15
+        }
+      ]
+    }
+  ]
+}
