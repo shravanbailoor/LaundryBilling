@@ -3,6 +3,7 @@ package com.example.laundrybilling;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -28,18 +29,28 @@ public class DatePickerFragment extends DialogFragment{
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
+
             return new DatePickerDialog(getActivity(), dateSetListener, year, month, day);
         }
 
         private DatePickerDialog.OnDateSetListener dateSetListener =
                 new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
-                        Toast.makeText(getActivity(), "selected date is " + view.getYear() +
-                                " / " + (view.getMonth()+1) +
-                                " / " + view.getDayOfMonth(), Toast.LENGTH_SHORT).show();
                         date = view.getYear() +
                                 "/" + (view.getMonth()+1) +
                                 "/" + view.getDayOfMonth();
+
+                        //INTENT OBJ
+                        Intent i = new Intent(getActivity().getBaseContext(),
+                                UserData.class);
+
+                        //PACK DATA
+                        i.putExtra("SENDER_KEY", "MyFragment");
+                        i.putExtra("YEAR_KEY", date);
+
+
+                        //START ACTIVITY
+                        getActivity().startActivity(i);
 
                     }
 
