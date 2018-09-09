@@ -2,6 +2,7 @@ package com.example.laundrybilling;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -140,11 +141,7 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
 
 
     public void OnClickItemTypeButton(View itemTypeButtonView) {
-        itemTypeButton = findViewById(R.id.buttonItemType);
-        radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
-        textSubItem = findViewById(R.id.tbSubItem);
-        textPrice = findViewById(R.id.tbPrice);
-        textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
+
 
         final String oldText = itemTypeButton.getText().toString();
 
@@ -233,7 +230,8 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
 
     }
     public void onClickConfirmButton(View confirmButtonView) {
-
+        Intent goToUserDataScreen = new Intent(this, UserData.class);
+        startActivity(goToUserDataScreen);
     }
 
     public void onClickQuantityDecreaseButton(View quantityButtonView) {
@@ -277,6 +275,21 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
+            if(itemTypeButton == null) {
+                itemTypeButton = findViewById(R.id.buttonItemType);
+            }
+            if(radioGroupOrderType == null) {
+                radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
+            }
+            if(textSubItem == null) {
+                textSubItem = findViewById(R.id.tbSubItem);
+            }
+            if(textPrice == null) {
+                textPrice = findViewById(R.id.tbPrice);
+            }
+            if(textDisplayQuantity == null) {
+                textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
+            }
             return 2;
         }
     }

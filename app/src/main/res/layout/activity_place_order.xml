@@ -187,6 +187,7 @@
         android:text="@string/confirm_items"
         android:textColor="@android:color/white"
         android:textSize="20sp"
+        android:onClick="onClickConfirmButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toStartOf="parent"
