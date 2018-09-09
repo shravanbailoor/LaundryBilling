@@ -19,7 +19,7 @@ import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment{
 
-    static String date = "";
+
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -36,21 +36,18 @@ public class DatePickerFragment extends DialogFragment{
         private DatePickerDialog.OnDateSetListener dateSetListener =
                 new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
-                        date = view.getYear() +
+                        String date = view.getYear() +
                                 "/" + (view.getMonth()+1) +
                                 "/" + view.getDayOfMonth();
+                        //Intent goToPlaceOrderScreen = getActivity().getIntent();
+                        Intent goToPlaceOrderScreen = new Intent(getActivity().getBaseContext(), UserData.class);
+                        //startActivity(goToPlaceOrderScreen);
+                        goToPlaceOrderScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        goToPlaceOrderScreen.setAction(Intent.ACTION_MAIN);
+                        goToPlaceOrderScreen.addCategory(Intent.CATEGORY_LAUNCHER);
 
-                        //INTENT OBJ
-                        Intent i = new Intent(getActivity().getBaseContext(),
-                                UserData.class);
-
-                        //PACK DATA
-                        i.putExtra("SENDER_KEY", "MyFragment");
-                        i.putExtra("YEAR_KEY", date);
-
-
-                        //START ACTIVITY
-                        getActivity().startActivity(i);
+                        UserData user = (UserData)getActivity();
+                        user.setDate(date);
 
                     }
 

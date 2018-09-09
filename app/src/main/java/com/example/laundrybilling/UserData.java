@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.time.Clock;
+import java.util.Date;
+
 public class UserData extends AppCompatActivity {
 
     Button tbDeliveryDate;
@@ -21,26 +24,8 @@ public class UserData extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        //DETERMINE WHO STARTED THIS ACTIVITY
-        if(this.getIntent().getExtras() != null) {
-            final String sender = this.getIntent().getExtras().getString("SENDER_KEY");
-
-            //IF ITS THE FRAGMENT THEN RECEIVE DATA
-            if (sender != null) {
-                Intent i = getIntent();
-                String year = i.getStringExtra("YEAR_KEY");
-
-                //SET DATA TO TEXTVIEWS
-
-                tbDeliveryDate.setText(String.valueOf(year));
-                Toast.makeText(this, "Received", Toast.LENGTH_SHORT).show();
-
-            }
-        }
+    public void setDate(String date){
+        tbDeliveryDate.setText(date);
     }
 
     public void showDatePicker(View v) {
