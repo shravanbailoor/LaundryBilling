@@ -1,5 +1,7 @@
 package com.example.laundrybilling;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +35,8 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    String[] listItemType;
+
     Boolean itemTypeSelected;
     Boolean subTypeSelected;
     Boolean quantitySelected;
@@ -41,8 +46,10 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
 
     TextView textDisplayQuantity;
     TextView textPrice;
-    TextView textCustomerName;
+    TextView textSubItem;
     TextView textItem;
+
+    Button itemTypeButton;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -58,11 +65,7 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
-        textCustomerName = findViewById(R.id.tbCustomerName);
-        textItem = findViewById(R.id.tbItem);
-        textPrice = findViewById(R.id.tbPrice);
-        textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -135,18 +138,59 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
         }
     }
 
+
+    public void OnClickItemTypeButton(View itemTypeButtonView) {
+        itemTypeButton = findViewById(R.id.buttonItemType);
+        radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
+        textSubItem = findViewById(R.id.tbSubItem);
+        textPrice = findViewById(R.id.tbPrice);
+        textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
+
+        final String oldText = itemTypeButton.getText().toString();
+
+        /* AlertDialog for selection of Item Type - Start */
+        listItemType = getResources().getStringArray(R.array.itemType);
+
+        AlertDialog.Builder itemTypeBuilder = new AlertDialog.Builder(PlaceOrderTabLayout.this);
+        itemTypeBuilder.setTitle("Choose an item");
+        itemTypeBuilder.setSingleChoiceItems(listItemType,
+                -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterfaceItemType, int i) {
+                        itemTypeButton.setText(listItemType[i]);
+                        if (itemTypeButton.getText().toString().equals(oldText)) {
+                            //Do nothing
+                        } else {
+                            textDisplayQuantity.setText(R.string.initial_quantity);
+                        }
+                        dialogInterfaceItemType.dismiss();
+                    }
+                });
+        AlertDialog dialogDisplayItemType = itemTypeBuilder.create();
+        dialogDisplayItemType.show();
+
+        /* AlertDialog for selection of Item Type - End */
+
+    }
+
     public void onClickAddBillItem(View addBillItemView) {
         /* Validation - Start */
 
         orderTypeSelected = Boolean.FALSE;
         itemTypeSelected = Boolean.FALSE;
         subTypeSelected = Boolean.FALSE;
-
-        radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
-        textCustomerName = findViewById(R.id.tbCustomerName);
-        textItem = findViewById(R.id.tbItem);
-        textPrice = findViewById(R.id.tbPrice);
-        textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
+        if(radioGroupOrderType == null) {
+            radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
+        }
+        if(itemTypeButton == null) {
+            itemTypeButton= findViewById(R.id.buttonItemType);
+        }
+        if(textPrice == null) {
+            textPrice = findViewById(R.id.tbPrice);
+        }
+        if(textDisplayQuantity == null) {
+            textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
+        }
 
         int selectedRadioButtonId = radioGroupOrderType.getCheckedRadioButtonId();
         if (selectedRadioButtonId == -1) {
@@ -156,7 +200,7 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
             orderTypeSelected = Boolean.TRUE;
         }
 
-        if (textItem.getText() != null && textItem.getText().toString().toLowerCase().equals("")) {
+        if (itemTypeButton.getText() != null && itemTypeButton.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(PlaceOrderTabLayout.this,
                     "Please enter Item", Toast.LENGTH_SHORT).show();
         } else {
@@ -164,7 +208,7 @@ public class PlaceOrderTabLayout extends AppCompatActivity {
         }
 
 
-        if (textCustomerName.getText()!=null && textCustomerName.getText().toString().toLowerCase().equals("")) {
+        if (textSubItem.getText()!=null && textSubItem.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(PlaceOrderTabLayout.this,
                     "Please enter Customer Name", Toast.LENGTH_SHORT).show();
         } else {

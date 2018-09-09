@@ -23,6 +23,8 @@ public class PlaceOrder extends AppCompatActivity {
     String[] listItemType;
     String[] listSubType;
 
+    Button itemTypeButton;
+
     String selectedItemTypeDisplayText;
 
     Boolean itemTypeSelected;
@@ -34,7 +36,7 @@ public class PlaceOrder extends AppCompatActivity {
 
     TextView textDisplayQuantity;
     TextView textPrice;
-    TextView textCustomerName;
+    TextView textSubItem;
     TextView textItem;
 
     private DatabaseReference mDatabase;
@@ -46,9 +48,10 @@ public class PlaceOrder extends AppCompatActivity {
 
         //mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        itemTypeButton = findViewById(R.id.buttonItemType);
         radioGroupOrderType = findViewById(R.id.radioBoxOrderType);
-        textCustomerName = findViewById(R.id.tbCustomerName);
-        textItem = findViewById(R.id.tbItem);
+        textSubItem = findViewById(R.id.tbSubItem);
+        itemTypeButton = findViewById(R.id.buttonItemType);
         textPrice = findViewById(R.id.tbPrice);
         textDisplayQuantity = findViewById(R.id.textDisplayQuantity);
 
@@ -89,7 +92,7 @@ public class PlaceOrder extends AppCompatActivity {
             orderTypeSelected = Boolean.TRUE;
         }
 
-        if (textItem.getText() != null && textItem.getText().toString().toLowerCase().equals("")) {
+        if (itemTypeButton.getText() != null && itemTypeButton.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(PlaceOrder.this,
                     "Please enter Item", Toast.LENGTH_SHORT).show();
         } else {
@@ -97,7 +100,7 @@ public class PlaceOrder extends AppCompatActivity {
         }
 
 
-        if (textCustomerName.getText()!=null && textCustomerName.getText().toString().toLowerCase().equals("")) {
+        if (textSubItem.getText()!=null && textSubItem.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(PlaceOrder.this,
                     "Please enter Customer Name", Toast.LENGTH_SHORT).show();
         } else {
@@ -119,6 +122,35 @@ public class PlaceOrder extends AppCompatActivity {
             //Save the data. Send the data to the list screen; swipe the screen to check it
         }
 
+
+    }
+
+
+    public void OnClickItemTypeButton(View itemTypeButtonView) {
+        final String oldText = itemTypeButton.getText().toString();
+
+        /* AlertDialog for selection of Item Type - Start */
+        listItemType = getResources().getStringArray(R.array.itemType);
+
+        AlertDialog.Builder itemTypeBuilder = new AlertDialog.Builder(PlaceOrder.this);
+        itemTypeBuilder.setTitle("Choose an item");
+        itemTypeBuilder.setSingleChoiceItems(listItemType,
+                -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterfaceItemType, int i) {
+                        itemTypeButton.setText(listItemType[i]);
+                        if (itemTypeButton.getText().toString().equals(oldText)) {
+                            //Do nothing
+                        } else {
+                            textDisplayQuantity.setText(R.string.initial_quantity);
+                        }
+                        dialogInterfaceItemType.dismiss();
+                    }
+                });
+        AlertDialog dialogDisplayItemType = itemTypeBuilder.create();
+        dialogDisplayItemType.show();
+
+        /* AlertDialog for selection of Item Type - End */
 
     }
 

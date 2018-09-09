@@ -27,7 +27,9 @@
         <activity
             android:name=".PlaceOrderTabLayout"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".OrderData" />
+        <activity android:name=".UserData"></activity>
     </application>
 
 </manifest>
