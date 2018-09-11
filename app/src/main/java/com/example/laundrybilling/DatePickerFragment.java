@@ -36,11 +36,32 @@ public class DatePickerFragment extends DialogFragment{
         private DatePickerDialog.OnDateSetListener dateSetListener =
                 new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
-                        String date = view.getYear() +
-                                "/" + (view.getMonth()+1) +
-                                "/" + view.getDayOfMonth();
+
+                        int formatDay = view.getDayOfMonth();
+                        int formatMonth = (view.getMonth() + 1);
+                        String stringDay;
+                        String stringMonth;
+
+                        if (formatDay < 10) {
+
+                            stringDay = "0" + formatDay;
+                        } else {
+                            stringDay = "" + formatDay;
+                        }
+
+                        if (formatMonth < 10) {
+
+                            stringMonth = "0" + formatMonth;
+                        } else {
+                            stringMonth = "" + formatMonth;
+                        }
+
+                        String date = stringDay +
+                                "/" + stringMonth +
+                                "/" + view.getYear();
                         //Intent goToPlaceOrderScreen = getActivity().getIntent();
-                        Intent goToPlaceOrderScreen = new Intent(getActivity().getBaseContext(), UserData.class);
+                        Intent goToPlaceOrderScreen = new Intent(getActivity().getBaseContext(),
+                                UserData.class);
                         //startActivity(goToPlaceOrderScreen);
                         goToPlaceOrderScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         goToPlaceOrderScreen.setAction(Intent.ACTION_MAIN);

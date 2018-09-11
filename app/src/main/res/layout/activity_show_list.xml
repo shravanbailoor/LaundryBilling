@@ -1,0 +1,60 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ShowList">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewShowList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#d9e6eb"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTotalAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="left|center"
+        android:paddingLeft="10dp"
+        android:text="@string/total_amount"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonShowList"
+        app:layout_constraintEnd_toStartOf="@+id/textViewDisplayAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewShowList" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/buttonShowList"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="onClickConfirmItems"
+        android:text="@string/confirm_items"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalAmount" />
+
+    <TextView
+        android:id="@+id/textViewDisplayAmount"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="right|center"
+        android:paddingRight="10dp"
+        android:text="@string/rupee_symbol"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonShowList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewTotalAmount"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewShowList" />
+
+</android.support.constraint.ConstraintLayout>

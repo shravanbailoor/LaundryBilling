@@ -8,77 +8,77 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/textItemType"
-        android:layout_width="92dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:id="@+id/textViewItemType"
+        android:layout_width="90dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_vertical"
         android:text="@string/item_type_text_name"
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textSubType"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSubType"
+        app:layout_constraintEnd_toStartOf="@+id/buttonItemType"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioBoxOrderType" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupOrderType" />
 
     <TextView
-        android:id="@+id/textSubType"
+        android:id="@+id/textViewSubType"
         android:layout_width="90dp"
-        android:layout_height="44dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="22dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:text="@string/item_sub_type"
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textPrice"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPrice"
+        app:layout_constraintEnd_toStartOf="@+id/textBoxSubItem"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textItemType" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewItemType" />
 
     <TextView
-        android:id="@+id/textPrice"
+        android:id="@+id/textViewPrice"
         android:layout_width="90dp"
-        android:layout_height="44dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="26dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:text="@string/item_price_text_name"
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textItemQuantity"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/textBoxPrice"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSubType" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubType" />
 
     <TextView
-        android:id="@+id/textItemQuantity"
+        android:id="@+id/textViewQuantity"
         android:layout_width="90dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:text="@string/item_quantity_text_name"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageButtonMinus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrice" />
 
     <RadioGroup
-        android:id="@+id/radioBoxOrderType"
+        android:id="@+id/radioGroupOrderType"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:background="#d9e6eb"
         android:gravity="center"
         android:nextFocusDown="@id/buttonItemType"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textItemType"
+        app:layout_constraintBottom_toTopOf="@+id/textViewItemType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +93,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/order_type_radiobutton_wash_name"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/radioButtonIron"
@@ -102,7 +102,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/order_type_radiobutton_iron_name"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/radioButtonDarning"
@@ -111,149 +111,148 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/order_type_radiobutton_darning_name"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textDisplayQuantity"
+        android:id="@+id/textViewDisplayQuantity"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:text="@string/initial_quantity"
         android:textAlignment="center"
         android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/imageButtonPlus"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageButtonMinus"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddItem"
-        app:layout_constraintTop_toBottomOf="@+id/tbPrice"
-        tools:layout_editor_absoluteY="309dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textBoxPrice" />
 
     <ImageButton
         android:id="@+id/imageButtonMinus"
         android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="onClickQuantityDecreaseButton"
         android:textColor="@android:color/white"
-        app:layout_constraintStart_toEndOf="@+id/textItemQuantity"
-        app:layout_constraintTop_toBottomOf="@+id/tbPrice"
-        app:srcCompat="@android:drawable/arrow_down_float"
-        tools:layout_editor_absoluteY="280dp" />
+        android:contentDescription="@string/content_desc_default"
+        app:layout_constraintEnd_toStartOf="@+id/textViewDisplayQuantity"
+        app:layout_constraintStart_toEndOf="@+id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/textBoxPrice"
+        app:srcCompat="@android:drawable/arrow_down_float" />
 
     <ImageButton
         android:id="@+id/imageButtonPlus"
         android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="onClickQuantityIncreaseButton"
         android:textColor="@android:color/white"
+        android:contentDescription="@string/content_desc_default"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbPrice"
-        app:srcCompat="@android:drawable/arrow_up_float"
-        tools:layout_editor_absoluteY="280dp" />
+        app:layout_constraintStart_toEndOf="@+id/textViewDisplayQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/textBoxPrice"
+        app:srcCompat="@android:drawable/arrow_up_float" />
 
-    <android.support.v7.widget.AppCompatButton
+    <Button
         android:id="@+id/buttonAddItem"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="onClickAddBillItem"
         android:text="@string/add_item"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.711"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDisplayQuantity"
-        app:layout_constraintBottom_toTopOf="@+id/button2"/>
+        app:layout_constraintStart_toEndOf="@+id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDisplayQuantity" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/button2"
-        android:layout_width="100dp"
+    <Button
+        android:id="@+id/buttonShowList"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="22dp"
         android:background="@android:color/holo_blue_dark"
-        android:text="@string/confirm_items"
+        android:onClick="onClickShowListButton"
+        android:text="@string/show_list"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:onClick="onClickConfirmButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.711"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddItem" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-        android:id="@+id/tbSubItem"
-        android:layout_width="195dp"
-        android:layout_height="41dp"
+    <EditText
+        android:id="@+id/textBoxSubItem"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginLeft="32dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="24dp"
+        android:background="#d9e6eb"
         android:ems="10"
         android:inputType="textPersonName"
-        android:nextFocusDown="@id/tbPrice"
-        app:layout_constraintStart_toEndOf="@+id/textSubType"
-        app:layout_constraintTop_toBottomOf="@+id/buttonItemType"
-        app:layout_constraintBottom_toTopOf="@+id/tbPrice"
-        tools:layout_editor_absoluteY="178dp" />
+        android:hint="@string/hint_default"
+        android:nextFocusDown="@id/textBoxPrice"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textBoxPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewSubType"
+        app:layout_constraintTop_toBottomOf="@+id/buttonItemType" />
 
     <Button
         android:id="@+id/buttonItemType"
-        android:layout_width="195dp"
-        android:layout_height="41dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginLeft="32dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/holo_blue_dark"
-        android:text="@string/tap_to_select_name"
         android:onClick="OnClickItemTypeButton"
+        android:text="@string/tap_to_select_name"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tbSubItem"
-        app:layout_constraintStart_toEndOf="@+id/textItemType"
-        app:layout_constraintTop_toBottomOf="@+id/radioBoxOrderType" />
+        app:layout_constraintBottom_toTopOf="@+id/textBoxSubItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewItemType"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupOrderType" />
 
-    <!--<EditText
-        android:id="@+id/tbCustomerName"
-        android:layout_width="195dp"
-        android:layout_height="41dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="34dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:nextFocusDown="@id/tbItem"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="107dp"
-        app:layout_constraintStart_toEndOf="@+id/textUserName"
-        app:layout_constraintTop_toBottomOf="@+id/radioBoxOrderType"
-        app:layout_constraintBottom_toTopOf="@+id/tbItem"/>
--->
     <EditText
-        android:id="@+id/tbPrice"
-        android:layout_width="197dp"
-        android:layout_height="44dp"
+        android:id="@+id/textBoxPrice"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginLeft="32dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
+        android:background="#d9e6eb"
         android:ems="10"
         android:inputType="number"
-        android:nextFocusDown="@id/textDisplayQuantity"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="246dp"
-        app:layout_constraintStart_toEndOf="@+id/textPrice"
-        app:layout_constraintTop_toBottomOf="@+id/tbSubItem"
-        app:layout_constraintBottom_toTopOf="@+id/textDisplayQuantity"/>
+        android:hint="@string/hint_default"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDisplayQuantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewPrice"
+        app:layout_constraintTop_toBottomOf="@+id/textBoxSubItem" />
 
 </android.support.constraint.ConstraintLayout>

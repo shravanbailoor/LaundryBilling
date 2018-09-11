@@ -1,5 +1,6 @@
 package com.example.laundrybilling;
 
+import android.app.Application;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     /* Proceed to PlaceOrder screen on tapping 'Place Order' button */
     public void placeOrder(View placeOrderView) {
-        Intent goToPlaceOrderScreen = new Intent(this, PlaceOrderTabLayout.class);
+        Intent goToPlaceOrderScreen = new Intent(this, PlaceOrder.class);
         startActivity(goToPlaceOrderScreen);
     }
 
@@ -24,4 +25,5 @@ public class MainActivity extends AppCompatActivity {
         Intent goToViewOrderHistoryScreen = new Intent(this, ViewOrderHistory.class);
         startActivity(goToViewOrderHistoryScreen);
     }
+
 }

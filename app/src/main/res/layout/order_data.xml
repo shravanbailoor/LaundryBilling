@@ -7,78 +7,84 @@
     tools:context=".OrderData">
 
     <TextView
-        android:id="@+id/textOrderNum"
-        android:layout_width="110dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="32dp"
+        android:id="@+id/textViewOrderNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:gravity="center_vertical"
         android:text="@string/item_order_number"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewDisplayOrderNumber"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textItemType"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textOrderNumber"
-        android:layout_width="180dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
+        android:id="@+id/textViewDisplayOrderNumber"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textItemType"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textOrderNum"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrderNumber"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textComments"
-        android:layout_width="110dp"
-        android:layout_height="44dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:text="@string/comments"
         android:textAlignment="center"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textOrderNum" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrderNumber" />
 
     <EditText
         android:id="@+id/tvComments"
-        android:layout_width="180dp"
-        android:layout_height="277dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:background="#d9e6eb"
         android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="@string/hint_comments"
         android:inputType="textMultiLine"
         android:singleLine="false"
         android:textAlignment="center"
         android:textSize="14sp"
-        android:gravity="center_vertical"
-        app:layout_constraintTop_toBottomOf="@+id/textOrderNumber"
-        app:layout_constraintStart_toEndOf="@+id/textComments"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPrint"/>
+        app:layout_constraintBottom_toTopOf="@+id/buttonPrint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textComments" />
 
     <Button
         android:id="@+id/buttonPrint"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:text="@string/print"
-        android:layout_marginTop="22dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="onClickPrint"
+        android:text="@string/print"
         android:textColor="@android:color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.711"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvComments"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

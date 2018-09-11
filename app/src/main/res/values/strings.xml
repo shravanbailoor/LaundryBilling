@@ -12,10 +12,10 @@
     <string name="item_sub_type">Sub Type:</string>
     <string name="item_quantity_text_name">Quantity:</string>
     <string name="item_order_number">Order Number:</string>
-    <string name="user_name">User Name:</string>
+    <string name="user_name">Customer Name:</string>
     <string name="phone_number">Phone Number:</string>
-    <string name="delivery_Date">Delivery Date:</string>
-    <string name="comments">Comments:</string>
+    <string name="delivery_date">Delivery Date:</string>
+    <string name="comments">Comments</string>
 
 
     <string name="order_type_radiobutton_wash_name">Wash</string>
@@ -37,5 +37,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="show_list">Show List</string>
+    <string name="total_amount">Total Amount:</string>
+    <string name="rupee_symbol">\u20B9</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="delivery_time">Delivery Time:</string>
+    <string name="hint_default">...</string>
+    <string name="hint_comments">Enter comments (optional)</string>
+    <string name="content_desc_default">Image from Android</string>
 
 </resources>

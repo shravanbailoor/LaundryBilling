@@ -25,11 +25,17 @@
             android:name=".ViewOrderHistory"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PlaceOrderTabLayout"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".OrderData" />
-        <activity android:name=".UserData"></activity>
+            android:name=".ShowList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderData"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserData"
+            android:screenOrientation="portrait">
+
+        </activity>
+
     </application>
 
 </manifest>
