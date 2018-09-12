@@ -20,11 +20,12 @@ import java.util.ArrayList;
 public class PlaceOrder extends AppCompatActivity {
 
     String[] listItemType;
-    String[] listSubType;
 
     Button itemTypeButton;
 
     String selectedItemTypeDisplayText;
+    String showListString;
+    String totalItemPrice;
 
     Boolean itemTypeSelected;
     Boolean subTypeSelected;
@@ -38,20 +39,14 @@ public class PlaceOrder extends AppCompatActivity {
     TextView textPrice;
     TextView textSubItem;
     TextView textItem;
-    String showListString;
+
     ArrayList showListArray;
-
-    String totalItemPrice;
     ArrayList itemPriceArray;
-
-    //private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
-
-        //mDatabase = FirebaseDatabase.getInstance().getReference();
 
         itemTypeButton = findViewById(R.id.buttonItemType);
         radioGroupOrderType = findViewById(R.id.radioGroupOrderType);
@@ -62,6 +57,16 @@ public class PlaceOrder extends AppCompatActivity {
 
         allChecksPassed = Boolean.FALSE;
 
+        Intent goToPlaceOrder = getIntent();
+        if( getIntent().getExtras() != null)
+        {
+            showListArray = goToPlaceOrder.getStringArrayListExtra("addedItemDetail");
+            itemPriceArray = goToPlaceOrder.getStringArrayListExtra("addedItemPrice");
+        }
+        else{
+            showListArray = new ArrayList();
+            itemPriceArray = new ArrayList();
+        }
     }
 
     public void onClickQuantityDecreaseButton(View quantityButtonView) {
@@ -116,7 +121,6 @@ public class PlaceOrder extends AppCompatActivity {
             subTypeSelected = Boolean.TRUE;
         }
 
-
         if (textPrice.getText()!=null && textPrice.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(PlaceOrder.this,
                     "Enter the Price", Toast.LENGTH_SHORT).show();
@@ -145,10 +149,6 @@ public class PlaceOrder extends AppCompatActivity {
                 orderTypeCode = "D";
             }
 
-            if (showListArray == null) {
-                showListArray = new ArrayList<>();
-            }
-
             Integer intPrice = Integer.parseInt(textPrice.getText().toString());
             Integer intQuantity = Integer.parseInt(textDisplayQuantity.getText().toString());
             Float floatMultiplyValue = (float) intPrice * intQuantity;
@@ -158,13 +158,9 @@ public class PlaceOrder extends AppCompatActivity {
                     textSubItem.getText() + " | Rs. " + textPrice.getText() +
                     " | x" + textDisplayQuantity.getText() + " | --- Rs. " + totalItemPrice);
 
-            if (itemPriceArray == null) {
-                itemPriceArray = new ArrayList<>();
-            }
             itemPriceArray.add(totalItemPrice);
 
-            Toast.makeText(PlaceOrder.this,
-                    "Item Added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PlaceOrder.this, "Item Added", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -173,7 +169,6 @@ public class PlaceOrder extends AppCompatActivity {
 
         /* AlertDialog for selection of Item Type - Start */
         listItemType = getResources().getStringArray(R.array.itemType);
-
         AlertDialog.Builder itemTypeBuilder = new AlertDialog.Builder(PlaceOrder.this);
         itemTypeBuilder.setTitle("Choose an item");
         itemTypeBuilder.setSingleChoiceItems(listItemType,
@@ -191,18 +186,16 @@ public class PlaceOrder extends AppCompatActivity {
                 });
         AlertDialog dialogDisplayItemType = itemTypeBuilder.create();
         dialogDisplayItemType.show();
-
         /* AlertDialog for selection of Item Type - End */
-
     }
 
     public void onClickShowListButton(View showListButtonView) {
-        if (allChecksPassed == Boolean.TRUE) {
+        if ((allChecksPassed == Boolean.TRUE) || (showListArray.size() > 0)) {
             Intent goToListScreen = new Intent(this, ShowList.class);
-            //goToListScreen.putExtra("addedItemDetail",showListString);
             goToListScreen.putExtra("addedItemDetail", showListArray);
             goToListScreen.putExtra("addedItemPrice", itemPriceArray);
             startActivity(goToListScreen);
+            finish();
         } else {
             Toast.makeText(this, "List is empty", Toast.LENGTH_SHORT).show();
         }
@@ -211,7 +204,6 @@ public class PlaceOrder extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             exitByBackKey();
-
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -233,7 +225,6 @@ public class PlaceOrder extends AppCompatActivity {
                     }
                 })
                 .show();
-
     }
 
 }

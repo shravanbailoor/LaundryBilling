@@ -23,7 +23,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapter.ViewHolder viewHolder, int i) {
-
         viewHolder.tvAddedItem.setText(listAddedItems.get(i));
     }
 

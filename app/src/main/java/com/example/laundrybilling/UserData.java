@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.time.Clock;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -97,6 +98,8 @@ public class UserData extends AppCompatActivity {
             Toast.makeText(this, "Enter text for Customer Name", Toast.LENGTH_SHORT).show();
         } else if (phoneNumberText.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(this, "Enter the Phone Number", Toast.LENGTH_SHORT).show();
+        } else if (phoneNumberText.getText().toString().length() != 10) {
+            Toast.makeText(this, "Phone Number should be of 10 digits", Toast.LENGTH_SHORT).show();
         } else if (deliveryDateButton.getText().toString().toLowerCase().equals("select date")) {
             Toast.makeText(this, "Select the Delivery Date", Toast.LENGTH_SHORT).show();
         } else {
@@ -104,9 +107,4 @@ public class UserData extends AppCompatActivity {
             startActivity(goToOrderScreen);
         }
     }
-
-    /*public void onClickReview(View view) {
-        Intent goToShowListScreen = new Intent(this, ShowList.class);
-        startActivity(goToShowListScreen);
-    }*/
 }
