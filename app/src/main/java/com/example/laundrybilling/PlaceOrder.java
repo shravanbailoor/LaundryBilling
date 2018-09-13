@@ -191,6 +191,7 @@ public class PlaceOrder extends AppCompatActivity {
 
     public void onClickShowListButton(View showListButtonView) {
         if ((allChecksPassed == Boolean.TRUE) || (showListArray.size() > 0)) {
+
             Intent goToListScreen = new Intent(this, ShowList.class);
             goToListScreen.putExtra("addedItemDetail", showListArray);
             goToListScreen.putExtra("addedItemPrice", itemPriceArray);

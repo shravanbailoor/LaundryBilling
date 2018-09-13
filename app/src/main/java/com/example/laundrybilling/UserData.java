@@ -15,8 +15,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -91,6 +94,8 @@ public class UserData extends AppCompatActivity {
     public void onClickCheckOut(View view) {
         AutoCompleteTextView customerNameText = findViewById(R.id.autoUserName);
         EditText phoneNumberText = findViewById(R.id.tbPhoneNumber);
+        Intent goToShowList = getIntent();
+        OrderDetails orderDetails = (OrderDetails) goToShowList.getSerializableExtra("orderDetails");
 
         if (customerNameText.getText().toString().toLowerCase().equals("")) {
             Toast.makeText(this, "Enter the Customer Name", Toast.LENGTH_SHORT).show();
@@ -103,7 +108,16 @@ public class UserData extends AppCompatActivity {
         } else if (deliveryDateButton.getText().toString().toLowerCase().equals("select date")) {
             Toast.makeText(this, "Select the Delivery Date", Toast.LENGTH_SHORT).show();
         } else {
+            String customerName = customerNameText.getText().toString();
+            Long phoneNumber = Long.valueOf(phoneNumberText.getText().toString());
+            String deliveryDateTime = deliveryDateButton.getText().toString() +" "+ deliveryTimeButton.getText().toString();
+
+            orderDetails.setCustomerName(customerName);
+            orderDetails.setDeliveryDate(deliveryDateTime);
+            orderDetails.setPhoneNumber(phoneNumber);
+
             Intent goToOrderScreen = new Intent(this, OrderData.class);
+            goToOrderScreen.putExtra("orderDetails", (Serializable) orderDetails);
             startActivity(goToOrderScreen);
         }
     }

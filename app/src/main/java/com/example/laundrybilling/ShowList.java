@@ -14,7 +14,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShowList extends AppCompatActivity {
 
@@ -99,9 +103,34 @@ public class ShowList extends AppCompatActivity {
     }
 
     public void onClickConfirmItems(View viewConfirmItems) {
+        List<Items> itemsList = new ArrayList<>();
+         Items item ;
+        for (String strItem:
+             addedItemDetailArray) {
+            String[] arrItemDetails = strItem.split("\\|");
+
+
+            if(arrItemDetails.length>0){
+                String typeWork = arrItemDetails[1];
+                String[] arrItemTypes = arrItemDetails[2].split(" - ");
+                String itemType = arrItemTypes[0].trim();
+                String itemSubType = arrItemTypes[1].trim();
+                double price = Double.valueOf(arrItemDetails[3].replace("Rs.","").trim());
+                int quantity = Integer.valueOf(arrItemDetails[4].replace("x","").trim());
+                double itemTotalPrice = price * quantity;
+                item = new Items(typeWork, itemType,itemSubType,price,quantity
+                ,itemTotalPrice);
+                itemsList.add(item);
+            }
+        }
+
+
+        OrderDetails orderDetails = new OrderDetails(null, null, -1, itemsList, totalAmount,
+                null,null);
+
         Intent goToUserDataScreen = new Intent(this, UserData.class);
-        goToUserDataScreen.putExtra("addedItemDetail", addedItemDetailArray);
-        goToUserDataScreen.putExtra("addedItemPrice", addedItemPriceArray);
+        goToUserDataScreen.putExtra("orderDetails", (Serializable) orderDetails);
+
         startActivity(goToUserDataScreen);
         //finish();
     }
