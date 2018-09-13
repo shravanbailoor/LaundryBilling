@@ -44,7 +44,7 @@ public class OrderData extends AppCompatActivity {
     //URL derived from form URL
     public static final String URL="https://docs.google.com/forms/d/e/1FAIpQLSfnPibdSt5cVxLHuqTFbj7jVD5gBs3CeB9hJ8m5-2IC-SUVnw/formResponse";
     //input element ids found from the live form page
-    public static final String ORDERNUMBER_KEY="entry.1243630790";
+    public static final String ORDERNUMBER_KEY="entry.146066368";
     public static final String CUSTOMERNAME_KEY="entry.1302306441";
     public static final String PHONENUMBER_KEY="entry.1863831328";
     public static final String WORKTYPE_KEY="entry.761737797";
@@ -378,73 +378,6 @@ public class OrderData extends AppCompatActivity {
     }
     //Send SMS functionality - End - 12092018
 
-    public boolean PostData(String... contactData){
-        {
-            Boolean result = true;
-            String orderNumber = contactData[0];
-            String customerName = contactData[1];
-            String phoneNumber = contactData[2];
-            String workType = contactData[3];
-            String itemType = contactData[4];
-            String itemSubType = contactData[5];
-            Double price = Double.valueOf(contactData[6]);
-            int quantity = Integer.valueOf(contactData[7]);
-            Double itemPriceTotal = Double.valueOf(contactData[8]);
-            Double orderTotalCost = Double.valueOf(contactData[9]);
-            String deliveryDate = contactData[10];
-            String comments = contactData[11];
-            String orderedDate = String.valueOf(Calendar.getInstance().getTime());
-            String postBody="";
-
-            try {
-                //all values must be URL encoded to make sure that special characters like & | ",etc.
-                //do not cause problems
-                postBody = ORDERNUMBER_KEY+"=" + URLEncoder.encode(orderNumber,"UTF-8") +
-                        "&" + CUSTOMERNAME_KEY + "=" + URLEncoder.encode(customerName,"UTF-8") +
-                        "&" + PHONENUMBER_KEY + "=" + URLEncoder.encode(phoneNumber,"UTF-8") +
-                        "&" + ORDERNUMBER_KEY+"=" + URLEncoder.encode(orderNumber,"UTF-8") +
-                        "&" + WORKTYPE_KEY + "=" + URLEncoder.encode(workType,"UTF-8") +
-                        "&" + ITEMTYPE_KEY + "=" + URLEncoder.encode(itemType,"UTF-8") +
-                        "&" + ITEMSUBTYPE_KEY+"=" + URLEncoder.encode(itemSubType,"UTF-8") +
-                        "&" + PRICE_KEY + "=" + price +
-                        "&" + QUANTITY_KEY + "=" + quantity +
-                        "&" + ITEMTOTALPRICE_KEY +"=" + itemPriceTotal +
-                        "&" + ORDERTOTALPRICE_KEY + "=" + orderTotalCost +
-                        "&" + DELIVERYDATE_KEY + "=" + URLEncoder.encode(deliveryDate,"UTF-8") +
-                        "&" + COMMENTS_KEY+"=" + URLEncoder.encode(comments,"UTF-8") +
-                        "&" + ORDEREDDATE_KEY + "=" + URLEncoder.encode(orderedDate,"UTF-8");
-            } catch (UnsupportedEncodingException ex) {
-                result=false;
-            }
-
-            /*
-            //If you want to use HttpRequest class from http://stackoverflow.com/a/2253280/1261816
-            try {
-			HttpRequest httpRequest = new HttpRequest();
-			httpRequest.sendPost(url, postBody);
-		}catch (Exception exception){
-			result = false;
-		}
-            */
-
-            try{
-                //Create OkHttpClient for sending request
-                OkHttpClient client = new OkHttpClient();
-                //Create the request body with the help of Media Type
-                RequestBody body = RequestBody.create(FORM_DATA_TYPE, postBody);
-                Request request = new Request.Builder()
-                        .url(URL)
-                        .post(body)
-                        .build();
-                //Send the request
-                Response response = client.newCall(request).execute();
-            }catch (IOException exception){
-                result=false;
-            }
-            return result;
-        }
-    }
-
 
     //AsyncTask to send data as a http POST request
     private class PostDataTask extends AsyncTask<String, Void, Boolean> {
@@ -473,7 +406,6 @@ public class OrderData extends AppCompatActivity {
                 postBody = ORDERNUMBER_KEY+"=" + URLEncoder.encode(orderNumber,"UTF-8") +
                         "&" + CUSTOMERNAME_KEY + "=" + URLEncoder.encode(customerName,"UTF-8") +
                         "&" + PHONENUMBER_KEY + "=" + URLEncoder.encode(phoneNumber,"UTF-8") +
-                        "&" + ORDERNUMBER_KEY+"=" + URLEncoder.encode(orderNumber,"UTF-8") +
                         "&" + WORKTYPE_KEY + "=" + URLEncoder.encode(workType,"UTF-8") +
                         "&" + ITEMTYPE_KEY + "=" + URLEncoder.encode(itemType,"UTF-8") +
                         "&" + ITEMSUBTYPE_KEY+"=" + URLEncoder.encode(itemSubType,"UTF-8") +
