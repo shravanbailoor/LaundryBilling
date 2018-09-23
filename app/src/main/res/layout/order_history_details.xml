@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderHistoryDetailsActivity">
+
+    <TextView
+        android:id="@+id/tvHisOrderNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:text="@string/item_order_number"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHisDisplayOrderNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewHisDisplayOrderNumber"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvHisOrderNumber"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <TextView
+        android:id="@+id/tvHisCustomerName"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:text="@string/user_name"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHisCustomerName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHisOrderNumber" />
+
+    <TextView
+        android:id="@+id/textViewHisCustomerName"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvHisCustomerName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHisDisplayOrderNumber" />
+
+
+    <TextView
+        android:id="@+id/tvHisPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:text="@string/phone_number"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHisPhoneNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHisCustomerName" />
+
+    <TextView
+        android:id="@+id/textViewHisPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvHisPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHisCustomerName" />
+
+    <TextView
+        android:id="@+id/tvHisDeliveryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:text="@string/delivery_date"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHisDeliveryDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHisPhoneNumber" />
+
+    <TextView
+        android:id="@+id/textViewHisDeliveryDate"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvHisDeliveryDate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHisPhoneNumber" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewHisShowItems"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#d9e6eb"
+        android:scrollbars="vertical"
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/tvHisTotalAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHisDeliveryDate" />
+
+    <TextView
+        android:id="@+id/tvHisTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="left|center"
+        android:paddingLeft="10dp"
+        android:text="@string/total_amount"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCompleted"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHisDisplayAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewHisShowItems" />
+
+
+    <TextView
+        android:id="@+id/textViewHisDisplayAmount"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="right|center"
+        android:paddingRight="10dp"
+        android:text="@string/rupee_symbol"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCompleted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvHisTotalAmount"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewHisShowItems" />
+
+    <Button
+        android:id="@+id/buttonCompleted"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="onClickCompleted"
+        android:text="@string/complete"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHisTotalAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
+
+

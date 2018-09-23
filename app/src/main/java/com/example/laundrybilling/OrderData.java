@@ -74,6 +74,11 @@ public class OrderData extends AppCompatActivity {
     byte[] readBuffer;
     int readBufferPosition;
     volatile boolean stopWorker;
+    private static boolean checkOrderNumber = false;
+
+    boolean flagPrint;
+    boolean flagSms;
+    boolean flagSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,54 +88,61 @@ public class OrderData extends AppCompatActivity {
         orderNumber = findViewById(R.id.textViewDisplayOrderNumber);
         comments = findViewById(R.id.tvComments);
 
-        if(orderNumber.getText().toString().equalsIgnoreCase("")) {
-            SharedPreferences sp = getSharedPreferences("key_code", MODE_PRIVATE);
-            int code = sp.getInt("code", 0);
 
-            if (code <= 0) {
-                code = 1; //--set default start value--
-            } else {
-                code++; //--or just increment it--
-            }
+            orderNumber.setText(MainActivity.orderNumber);
 
-            sp.edit().putInt("code", code).commit(); //--save new value--
-
-            //--use code variable now--
-            String newKey = "A-" + code;
-            orderNumber.setText(newKey);
-        }
     }
 
     public void onClickPrint(View view) {
+        checkOrderNumber = false;
         Intent goToShowList = getIntent();
         OrderDetails orderDetails = (OrderDetails) goToShowList.getSerializableExtra("orderDetails");
         orderDetails.setOrderNumber(orderNumber.getText().toString());
         orderDetails.setOrderComments(comments.getText().toString());
-        try {
-            openBluetooth();
-            sendData();
-            closeBT();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-
-        sendSMS(String.valueOf(orderDetails.getPhoneNumber()),"This is a test message");
-        //Create an object for PostDataTask AsyncTask
-        PostDataTask postDataTask = new PostDataTask();
-
+        PostDataTask postDataTask ;
+        int count = 1;
         for (Items item: orderDetails.getItems()
-             ) {
+                ) {
             //execute asynctask
+            String isLast = "Not last one";
+            if(count == orderDetails.getItems().size()){
+                isLast = "Last";
+            }
             postDataTask = new PostDataTask();
             postDataTask.execute(orderDetails.getOrderNumber(),
                     orderDetails.getCustomerName(), String.valueOf(orderDetails.getPhoneNumber()), item.getTypeWork(),
                     item.getItemType(), item.getItemSubType(), String.valueOf(item.getPrice()),
                     String.valueOf(item.getQuantity()), String.valueOf(item.getItemTotalPrice()), String.valueOf(orderDetails.getTotalCost()),
-                    orderDetails.getDeliveryDate(), orderDetails.getOrderComments());
+                    orderDetails.getDeliveryDate(), orderDetails.getOrderComments(),isLast);
+            count++;
+        }
+        if(flagSave) {
+            try {
+                openBluetooth();
+                sendData();
+                closeBT();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+        }else{
+            Toast.makeText(this, "Some problem occured while saving the data to Database. Please check internet connection.", Toast.LENGTH_LONG);
+        }
+        if(flagPrint) {
+            sendSMS(String.valueOf(orderDetails.getPhoneNumber()), "This is a test message");
+        }else{
+            Toast.makeText(this, "Some problem occured while printing. Please check bluetooth connection.", Toast.LENGTH_LONG);
+        }
+        //Create an object for PostDataTask AsyncTask
+        if(flagSms){
+            MainActivity.orderNumber = "";
+            Intent goToMainScreen = new Intent(this, MainActivity.class);
+            startActivity(goToMainScreen);
 
         }
+
+
 
     }
 
@@ -397,6 +409,7 @@ public class OrderData extends AppCompatActivity {
             Double orderTotalCost = Double.valueOf(contactData[9]);
             String deliveryDate = contactData[10];
             String comments = contactData[11];
+            String isLast = contactData[12];
             String orderedDate = String.valueOf(Calendar.getInstance().getTime());
             String postBody="";
 
@@ -441,9 +454,13 @@ public class OrderData extends AppCompatActivity {
                         .build();
                 //Send the request
                 Response response = client.newCall(request).execute();
+                if(isLast.equalsIgnoreCase("Last")){
+                    response.body().toString();
+                }
             }catch (IOException exception){
                 result=false;
             }
+
             return result;
         }
 
